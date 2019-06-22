@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>Dashboard: <small>{{session.username}}</small> </h2>
+    <a href="/CreatePost"> Create Post</a>
+    <div class="users">
+      {% for post in posts %}
+      <div class="jumbotron jumbotron-fluid" id = "user">
+        <div class="container">
+          <h1 class="display-4">Issue ID: {{post.IssueID}}</h1>
+          <h2 class="lead">Time Spend: {{post.TimeSpent}}</h2>
+          <h3 class = "lead">Date: {{post.date}}</h3>
+          <a href="/deletePost/{{post._id}}">delete</a>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+    <p> <a href="/logout">logout</a></p>
+  </body>
+</html>
+
+
+<style media="screen">
+  .users {
+    text-align: center;
+    margin-right: 25%;
+    margin-left: 25%;
+  }
+  #user {
+    background-color: #D3D3D3;
+    padding-bottom: 100px;
+  }
+</style>
