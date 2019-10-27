@@ -1,0 +1,32 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+type Username @model {
+  id: ID! @isUnique
+  name: String
+  password: String
+  email: String @isUnique
+  titles: [Title!]! @relation(name:"UserData")
+
+}
+
+type Title @model {
+  id: ID! @isUnique
+  title: String!
+  # Uncomment below - you can declare relations between models like this
+  cards: [Card!]! @relation(name: "UserCards")
+  email: [Username!]! @relation(name:"UserData")
+}
+
+
+# Uncomment the model below as well
+
+type Card @model {
+  id: ID! @isUnique
+  question: String
+  answer: String
+  show: Boolean
+  dateShow: DateTime!
+   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
+  titles: [Title!]! @relation(name: "UserCards")
+}
